@@ -1,6 +1,9 @@
 import path from 'path'
+import { fileURLToPath } from 'url'
 import { readWantedLockfile } from '@pnpm/lockfile-file'
 import makeVirtualNodeModules from '../src/makeVirtualNodeModules'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 test('makeVirtualNodeModules', async () => {
   const lockfile = await readWantedLockfile(path.join(__dirname, '__fixtures__/simple'), { ignoreIncompatible: true })
