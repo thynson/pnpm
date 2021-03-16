@@ -182,7 +182,7 @@ test('hoistPattern=* throws exception when executed on node_modules installed w/
   ).rejects.toThrow(/different hoist-pattern value/)
 })
 
-test('hoistPattern=undefined throws exception when executed on node_modules installed with hoist-pattern=*', async () => {
+test('hoistPattern=[] throws exception when executed on node_modules installed with hoist-pattern=*', async () => {
   prepareEmpty()
   const opts = await testDefaults({ hoistPattern: '*' })
   const manifest = await addDependenciesToPackage({}, ['is-positive'], opts)
@@ -191,7 +191,7 @@ test('hoistPattern=undefined throws exception when executed on node_modules inst
     addDependenciesToPackage(manifest, ['is-negative'], {
       ...opts,
       forceHoistPattern: true,
-      hoistPattern: undefined,
+      hoistPattern: [],
     })
   ).rejects.toThrow(/different hoist-pattern value/)
 
@@ -199,7 +199,7 @@ test('hoistPattern=undefined throws exception when executed on node_modules inst
   await addDependenciesToPackage(manifest, ['is-negative'], {
     ...opts,
     forceHoistPattern: false,
-    hoistPattern: undefined,
+    hoistPattern: [],
   })
 })
 
