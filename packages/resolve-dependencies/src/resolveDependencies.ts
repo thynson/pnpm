@@ -274,12 +274,12 @@ async function resolveDependenciesOfDependency (
   const updateShouldContinue = options.currentDepth <= updateDepth
   const update = (
     updateShouldContinue && (
-      !ctx.updateMatching ||
-      !extendedWantedDep.infoFromLockfile?.dependencyLockfile ||
+      (ctx.updateMatching == null) ||
+      ((extendedWantedDep.infoFromLockfile?.dependencyLockfile) == null) ||
       ctx.updateMatching(extendedWantedDep.infoFromLockfile.dependencyLockfile.name ?? extendedWantedDep.wantedDependency.alias)
     )
   ) || Boolean(
-    options.workspacePackages &&
+    (options.workspacePackages != null) &&
     wantedDepIsLocallyAvailable(
       options.workspacePackages,
       extendedWantedDep.wantedDependency,
@@ -298,7 +298,7 @@ async function resolveDependenciesOfDependency (
   }
   const resolveDependencyResult = await resolveDependency(extendedWantedDep.wantedDependency, ctx, resolveDependencyOpts)
 
-  if (!resolveDependencyResult) return null
+  if (resolveDependencyResult == null) return null
   if (resolveDependencyResult.isLinkedDependency) {
     ctx.dependenciesTree[resolveDependencyResult.pkgId] = {
       children: {},
@@ -337,7 +337,7 @@ async function resolveChildren (
   updateDepth: number,
   preferredVersions: PreferredVersions
 ) {
-  const currentResolvedDependencies = dependencyLockfile
+  const currentResolvedDependencies = (dependencyLockfile != null)
     ? {
       ...dependencyLockfile.dependencies,
       ...dependencyLockfile.optionalDependencies,
@@ -434,14 +434,14 @@ function getDepsToResolve (
     if (
       !proceedAll &&
       (
-        !infoFromLockfile ||
+        (infoFromLockfile == null) ||
         infoFromLockfile.dependencyLockfile != null && (
           infoFromLockfile.dependencyLockfile.peerDependencies != null ||
           infoFromLockfile.dependencyLockfile.transitivePeerDependencies?.length
         )
       )
     ) {
-      if (infoFromLockfile?.dependencyLockfile?.peerDependencies) {
+      if ((infoFromLockfile?.dependencyLockfile?.peerDependencies) != null) {
         Object.keys(infoFromLockfile.dependencyLockfile.peerDependencies).forEach((peerName) => {
           allPeers.add(peerName)
         })
@@ -481,7 +481,7 @@ function referenceSatisfiesWantedSpec (
   const depPath = dp.refToRelative(preferredRef, wantedDep.alias)
   if (depPath === null) return false
   const pkgSnapshot = opts.lockfile.packages?.[depPath]
-  if (!pkgSnapshot) {
+  if (pkgSnapshot == null) {
     logger.warn({
       message: `Could not find preferred package ${depPath} in lockfile`,
       prefix: opts.prefix,
@@ -519,8 +519,8 @@ function getInfoFromLockfile (
 
   let dependencyLockfile = lockfile.packages?.[depPath]
 
-  if (dependencyLockfile) {
-    if (dependencyLockfile.peerDependencies && dependencyLockfile.dependencies) {
+  if (dependencyLockfile != null) {
+    if ((dependencyLockfile.peerDependencies != null) && (dependencyLockfile.dependencies != null)) {
       // This is done to guarantee that the dependency will be relinked with the
       // up-to-date peer dependencies
       // Covered by test: "peer dependency is grouped with dependency when peer is resolved not from a top dependency"
