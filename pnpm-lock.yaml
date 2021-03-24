@@ -2318,7 +2318,7 @@ importers:
       '@types/semver': ^7.3.4
       '@types/update-notifier': ^5.0.0
       '@types/which': ^2.0.0
-      '@zkochan/libnpx': 11.0.3
+      '@zkochan/libnpx': 12.0.1
       '@zkochan/retry': ^0.2.0
       '@zkochan/rimraf': ^1.0.0
       anonymous-npm-registry-client: 0.1.2
@@ -2409,7 +2409,7 @@ importers:
       '@types/semver': 7.3.4
       '@types/update-notifier': 5.0.0
       '@types/which': 2.0.0
-      '@zkochan/libnpx': 11.0.3
+      '@zkochan/libnpx': 12.0.1
       '@zkochan/retry': 0.2.0
       '@zkochan/rimraf': 1.0.0
       anonymous-npm-registry-client: 0.1.2
@@ -4978,11 +4978,11 @@ packages:
     dependencies:
       argparse: 2.0.1
 
-  /@zkochan/libnpx/11.0.3:
-    resolution: {integrity: sha512-pkwTuA8Cd301zhg0Gz35nJ2sxKhGr5lFKFI6UT9ISEedGSYzxATsFlCF41+i/0kZcnZTG1nNlR5XknkZBGryuw==}
-    engines: {node: '>=8.15'}
+  /@zkochan/libnpx/12.0.1:
+    resolution: {integrity: sha512-d5tCko7LDaOWk0CwmlthWsgvcPeohkvtj4a55g9VGkeaax/5y0VI1OO4IlRLE1FQ1ixDEmLrWyDhhTriKWUjPg==}
+    engines: {node: '>=10.13'}
     dependencies:
-      '@zkochan/npm-package-arg': 1.0.2
+      '@zkochan/npm-package-arg': 2.0.0
       dotenv: 8.2.0
       rimraf: 3.0.2
       safe-buffer: 5.2.1
@@ -5017,6 +5017,16 @@ packages:
       hosted-git-info: 2.8.8
       semver: 6.3.0
       validate-npm-package-name: 3.0.0
+    dev: false
+
+  /@zkochan/npm-package-arg/2.0.0:
+    resolution: {integrity: sha512-v42ycaFkH8tYQfxtmnxvMdC3zRB75lwPyfiRy2Rz7F2pv3gqAsSHXHUYbmU93SzjIiHLNtj5UhoYFZwkZP22yw==}
+    engines: {node: '>=10.13'}
+    dependencies:
+      hosted-git-info: 3.0.8
+      semver: 7.3.5
+      validate-npm-package-name: 3.0.0
+    dev: true
 
   /@zkochan/retry/0.2.0:
     resolution: {integrity: sha512-WhB+2B/ZPlW2Xy/kMJBrMbqecWXcbDDgn0K0wKBAgO2OlBTz1iLJrRWduo+DGGn0Akvz1Lu4Xvls7dJojximWw==}
@@ -8353,7 +8363,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       lru-cache: 6.0.0
-    dev: false
 
   /hosted-git-info/4.0.1:
     resolution: {integrity: sha512-eT7NrxAsppPRQEBSwKSosReE+v8OzABwEScQYk5d4uxaEPlzxTIku7LINXtBGalthkLhJnq5lBI89PfK43zAKg==}
